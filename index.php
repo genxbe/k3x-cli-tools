@@ -10,7 +10,7 @@ $options = [
 
 Kirby::plugin('genxbe/k3x-cli-tools', [
     'routes' => $routes,
-	'commands' => array_merge(
+	'commands' => A::merge(
 		X\Commands\PluginCommands\ListCommand::render(),
 		X\Commands\PluginCommands\DeleteCommand::render(),
 	),

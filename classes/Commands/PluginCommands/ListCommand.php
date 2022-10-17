@@ -5,6 +5,8 @@ namespace X\Commands\PluginCommands;
 use X\Cli;
 use X\Commands\Command;
 
+use Kirby\Toolkit\Str;
+
 use function Termwind\{render};
 
 class ListCommand extends Command
@@ -24,21 +26,28 @@ class ListCommand extends Command
 
 		$pluginsHtml = '';
 
-        foreach($sys->plugins() as $plugin)
-        {
-            $pluginsHtml .= "<tr><td>{$plugin}</td><td>{$kirby->plugin($plugin)->description()}</td></tr>";
-        }
+		foreach ($sys->plugins() as $plugin) {
+			$p = $kirby->plugin($plugin);
+			$pluginsHtml .= '
+				<tr>
+				<td>'. $plugin .'</td>
+				<td>'. $p->version() .'</td>
+				<td>'. Str::short($p->description(), 100) .'</td>
+				</tr>
+			';
+		}
 
-        render(<<<HTML
-            <table>
-                <thead>
-                    <tr>
-                        <th>Plugin</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                {$pluginsHtml}
-            </table>
-        HTML);
+		render(<<<HTML
+			<table>
+				<thead>
+					<tr>
+						<th>Plugin</th>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				{$pluginsHtml}
+			</table>
+		HTML);
 	}
 }

@@ -1,7 +1,7 @@
 {
     "name": "genxbe/k3x-cli-tools",
     "description": "A bunch of usefull tools to use with the Kirby CLI",
-	"release": "1.0.0",
+	"version": "0.0.1",
     "keywords": [
         "genxbe",
         "k3x-cli-tools",
@@ -14,7 +14,7 @@
     ],
     "type": "kirby-plugin",
     "license": "proprietary",
-    "homepage": "https://genx.be",
+    "homepage": "https://github.com/genxbe/k3x-cli-tools",
     "authors": [
         {
             "name": "Sam Serrien",
@@ -31,10 +31,7 @@
     "autoload": {
         "psr-4": {
             "X\\": "classes/"
-        },
-        "files": [
-            "helpers.php"
-        ]
+        }
     },
     "config": {
         "optimize-autoloader": true,
