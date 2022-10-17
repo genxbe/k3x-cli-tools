@@ -1,0 +1,48 @@
+{
+    "name": "genxbe/k3x-cli-tools",
+    "description": "A bunch of usefull tools to use with the Kirby CLI",
+	"release": "1.0.0",
+    "keywords": [
+        "genxbe",
+        "k3x-cli-tools",
+        "kirby",
+        "plugin",
+        "getkirby",
+        "kirby3",
+        "kirby3-cms",
+        "kirby3-plugin"
+    ],
+    "type": "kirby-plugin",
+    "license": "proprietary",
+    "homepage": "https://genx.be",
+    "authors": [
+        {
+            "name": "Sam Serrien",
+            "email": "source@genx.be",
+            "homepage": "https://genx.be"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "getkirby/composer-installer": "^1.2",
+        "php-school/cli-menu": "^4.3",
+        "nunomaduro/termwind": "^1.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "X\\": "classes/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-name": "k3x-cli-tools"
+    }
+}
