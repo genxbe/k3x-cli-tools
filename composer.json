@@ -30,8 +30,7 @@
         "getkirby/composer-installer": "^1.2",
         "php-school/cli-menu": "^4.3",
         "nunomaduro/termwind": "^1.14",
-        "symfony/finder": "^6.1",
-        "mustangostang/spyc": "^0.6.3"
+        "bnomei/autoloader-for-kirby": "^1.7"
     },
     "autoload": {
         "psr-4": {
