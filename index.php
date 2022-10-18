@@ -2,16 +2,41 @@
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
-$routes = include __DIR__.'/config/routes.php';
-
-$options = [
-	//
-];
-
 Kirby::plugin('genxbe/k3x-cli-tools', [
-    'routes' => $routes,
-	'commands' => A::merge(
+	'options' => [
+		'maintenance' => true,
+	],
+
+	'snippets' => [
+		'maintenance' => __DIR__ . '/snippets/maintenance.php',
+	],
+
+	'commands' => array_merge(
+		/** Kirby Commands **/
+		X\Commands\KirbyCommands\RootsCommand::render(),
+		X\Commands\KirbyCommands\DownCommand::render(),
+		X\Commands\KirbyCommands\UpCommand::render(),
+
+		/** Plugin Commands **/
 		X\Commands\PluginCommands\ListCommand::render(),
 		X\Commands\PluginCommands\DeleteCommand::render(),
+		X\Commands\PluginCommands\PublishCommand::render(),
 	),
+
+	'hooks' => [
+        'route:after' => function($route, $path, $method) {
+			if (kirby()->option('genxbe.k3x-cli-tools.maintenance') === true) {
+				$rootFolder = getcwd();
+
+				$panelUrl = option('panel.slug') ?? 'panel';
+
+				if(file_exists($rootFolder.'/.maintenance') && Str::position(Url::current(),$panelUrl) === false)
+				{
+					$email = file_get_contents($rootFolder.'/.maintenance');
+					snippet('maintenance', compact('email'));
+					die();
+				}
+			}
+        },
+    ],
 ]);
