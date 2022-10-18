@@ -23,13 +23,13 @@ composer global require getkirby/cli
 
 This CLI plugin has a set of opinionated commands that are meant to be used with the Kirby CLI.
 
-`kirby x:kirby:roots` - Show the roots of your Kirby installation in a pretty way
-`kirby x:kirby:down {email}` - Put your site in maintenance mode with an optional email address for contact reasons
-`kirby x:kirby:up` - Disable the maintenance mode
+* `kirby x:kirby:roots` - Show the roots of your Kirby installation in a pretty way
+* `kirby x:kirby:down {email}` - Put your site in maintenance mode with an optional email address for contact reasons
+* `kirby x:kirby:up` - Disable the maintenance mode
 
-`kirby x:plugins:list` - Show the plugins of your kirby installation with version numbers in a pretty way
-`kirby x:plugins:delete` - Delete a plugin from your kirby installation (via 'composer remove')
-`kirby x:plugins:publish {filetype}` - Publish plugin overwriteable files to your root installation
+* `kirby x:plugins:list` - Show the plugins of your kirby installation with version numbers in a pretty way
+* `kirby x:plugins:delete` - Delete a plugin from your kirby installation (via 'composer remove')
+* `kirby x:plugins:publish {filetype}` - Publish plugin overwriteable files to your root installation
 
 ### Maintenance mode
 
