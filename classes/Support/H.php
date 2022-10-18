@@ -72,11 +72,16 @@ class H
         HTML);
     }
 
-	public static function debug($msg)
+	public static function debug($e)
 	{
 		if(self::VERBOSE === true)
 		{
-			self::error('DEBUG', $msg);
+			self::error('DEBUG', $e->getMessage());
+
+			if(function_exists('ray'))
+			{
+				ray($e);
+			}
 		}
 
 		if(self::VERBOSE === false)

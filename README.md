@@ -1,8 +1,21 @@
 # k3x-cli-tools
 
-A bunch of usefull tools to use with the Kirby CLI
+A bunch of usefull tools to use with the Kirby CLI.
 
 ## Options
+
+You can disable maintenance mode if you don't want your site to go in maintenance mode when there's a `.maintenance` file in the root. Mode can also be (de)activated via `kirby x:kirby:down` and `kirby x:kirby:up`.
+
+The panel will always be reachable, even if the site is in maintenance mode. If you are logged in you will also be able to visit the site.
+
+```php
+# site/config/config.php
+return [
+    'genxbe.k3x-cli-tools' => [
+        'maintenance' => true,
+    ],
+];
+```
 
 ## Usage
 

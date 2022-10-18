@@ -31,14 +31,14 @@ class Plugins
 		return $installedPlugins;
 	}
 
-	public static function select($title = 'Select a plugin'): Plugin
+	public static function select($title = 'Select a plugin', bool $askForConfirmation = false): Plugin
     {
 		$installedPlugins = self::get();
 
 		$option = (new Menu(
 			title: $title,
 			options: $installedPlugins,
-			askForConfirmation: true,
+			askForConfirmation: $askForConfirmation,
 		))->open();
 
 		if(is_null($option))

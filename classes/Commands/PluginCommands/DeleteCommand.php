@@ -17,7 +17,10 @@ class DeleteCommand extends Command
 
 	public function __construct(CLI $cli)
 	{
-		$plugin = Plugins::select('Which plugin do you want to delete?');
+		$plugin = Plugins::select(
+			title: 'Which plugin do you want to delete?',
+			askForConfirmation: true,
+		);
 
 		$this->deletePlugin($plugin);
 	}
