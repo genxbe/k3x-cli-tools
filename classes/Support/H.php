@@ -1,24 +1,32 @@
 <?php
 
-namespace X;
+namespace X\Support;
 
 use function Termwind\{render};
 
-class Cli
+/**
+ * Helpers
+ */
+class H
 {
-	const VERBOSE = false;
+	const VERBOSE = true;
 
-	public static function cmd(string $cmd)
+	public static function cmd(string $cmd, string $folder = '')
     {
+		if(empty($folder))
+        {
+            $folder = getcwd();
+        }
+
         if(self::VERBOSE === false)
         {
-            shell_exec("cd {$folder} && {$cmd} 2>/dev/null >/dev/null &");
+            exec("cd {$folder} && {$cmd} 2>/dev/null >/dev/null &");
         }
 
         if(self::VERBOSE === true)
         {
             echo "cd {$folder} && {$cmd}".PHP_EOL;
-            shell_exec("cd {$folder} && {$cmd}");
+            echo shell_exec("cd {$folder} && {$cmd}");
         }
     }
 
@@ -63,4 +71,22 @@ class Cli
             </div>
         HTML);
     }
+
+	public static function debug($e)
+	{
+		if(self::VERBOSE === true)
+		{
+			self::error('DEBUG', $e->getMessage());
+
+			if(function_exists('ray'))
+			{
+				ray($e);
+			}
+		}
+
+		if(self::VERBOSE === false)
+		{
+			self::error('ERROR', 'Oops! Something went wrong, please try again.');
+		}
+	}
 }

@@ -2,10 +2,6 @@
 
 namespace X\Commands;
 
-use X\Cli;
-
-use function Termwind\{render};
-
 class Command
 {
 	private static string $commandName = 'x:command';

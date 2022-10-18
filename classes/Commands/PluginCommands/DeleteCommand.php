@@ -2,13 +2,12 @@
 
 namespace X\Commands\PluginCommands;
 
-use X\Cli;
+use Kirby\CLI\CLI;
+use Kirby\Cms\Plugin;
+
+use X\Support\H;
+use X\Support\Plugins;
 use X\Commands\Command;
-
-use PhpSchool\CliMenu\CliMenu;
-use PhpSchool\CliMenu\Builder\CliMenuBuilder;
-
-use function Termwind\{render};
 
 class DeleteCommand extends Command
 {
@@ -16,83 +15,29 @@ class DeleteCommand extends Command
 	public static string $commandDescription = 'Delete a specific plugin (use with caution!)';
 	public static array $commandArgs = [];
 
-	private object $cli;
-
-	public function __construct(object $cli)
+	public function __construct(CLI $cli)
 	{
-		$this->cli = $cli;
+		$plugin = Plugins::select(
+			title: 'Which plugin do you want to delete?',
+			askForConfirmation: true,
+		);
 
-		$kirby = kirby();
-		$cli = $this->cli;
+		$this->deletePlugin($plugin);
+	}
 
-		$sys = new \Kirby\Cms\System($kirby);
+	private function deletePlugin(Plugin $plugin): void
+	{
+		H::info('Deleting', $plugin->name().' (Please wait...)');
 
-        $installedPlugins = [];
-        $installedPluginsMenu = [];
-
-        foreach($sys->plugins() as $plugin)
-        {
-            array_push($installedPlugins, $plugin);
-            array_push($installedPluginsMenu, $plugin->name());
-        }
-
-        if(empty($installedPlugins))
-        {
-            $cli->error('There are no plugins installed.');
-            die();
-        }
-
-		$itemCallable = function (CliMenu $menu) use ($cli, $installedPlugins) {
-			$continue = $menu->cancellableConfirm('Are you sure?')->display('Yes!', 'Cancel');
-
-			if ($continue) {
-				$option = $menu->getSelectedItem()->getText();
-				$option = array_keys($installedPlugins, $option)[0];
-
-				if(is_null($option))
-				{
-					$cli->error('No plugin selected.');
-					die();
-				}
-
-				$plugin = $installedPlugins[$option];
-
-				Cli::info('Deleting', $plugin->name());
-				Cli::success('Finished', $plugin->name() .' has been deleted.');
-				die();
-			} else {
-				// Do nothing
-			}
-		};
-
-		$menu = new CliMenuBuilder;
-		$menu->setTitle('Select the plugin you want to delete');
-
-		foreach($installedPlugins as $plugin)
+		try
 		{
-			$menu->addItem($plugin->name(), $itemCallable);
+			H::cmd("composer remove {$plugin->name()}");
+		}
+		catch(\Exception $e)
+		{
+			H::debug($e->getMessage());
 		}
 
-		$menu->addLineBreak('-');
-		$menu->setMarginAuto();
-
-		$menu = $menu->build();
-		$menu->open();
-
-
-        // $this->task("Deleting {$plugin->name()}", function () use ($plugin)
-        // {
-        //     try
-        //     {
-        //         X::cmd("composer remove {$plugin->name()}");
-
-        //         return true;
-        //     }
-        //     catch(\Exception $e)
-        //     {
-        //         X::debug($this, 'Error: '.$e->getMessage());
-        //         return false;
-        //     }
-        // });
+		H::success('Finished', $plugin->name() .' has been deleted.');
 	}
 }
