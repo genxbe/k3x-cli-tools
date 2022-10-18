@@ -27,10 +27,9 @@ Kirby::plugin('genxbe/k3x-cli-tools', [
         'route:after' => function($route, $path, $method) {
 			if (kirby()->option('genxbe.k3x-cli-tools.maintenance') === true) {
 				$rootFolder = getcwd();
-
 				$panelUrl = option('panel.slug') ?? 'panel';
 
-				if(file_exists($rootFolder.'/.maintenance') && Str::position(Url::current(),$panelUrl) === false)
+				if(!kirby()->user() && Str::position(Url::current(),$panelUrl) === false && file_exists($rootFolder.'/.maintenance'))
 				{
 					$email = file_get_contents($rootFolder.'/.maintenance');
 					snippet('maintenance', compact('email'));
