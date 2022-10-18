@@ -1,6 +1,8 @@
-# k3x-cli-tools
+# Kirby CLI tools
 
-A bunch of usefull tools to use with the Kirby CLI.
+![License](https://img.shields.io/badge/License-MIT-green.svg) ![PHP Version](https://img.shields.io/packagist/dependency-v/genxbe/k3x-cli-tools/php) ![Kirby](https://img.shields.io/badge/Kirby-3.8+-9a3ecf8.svg) ![ALPHA](https://img.shields.io/packagist/v/genxbe/k3x-cli-tools)
+
+A bunch of usefull (and opiniated) tools to use with the Kirby CLI.
 
 ## Options
 
