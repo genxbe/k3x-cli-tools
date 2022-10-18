@@ -9,7 +9,7 @@ use function Termwind\{render};
  */
 class H
 {
-	const VERBOSE = true;
+	const VERBOSE = false;
 
 	public static function cmd(string $cmd, string $folder = '')
     {

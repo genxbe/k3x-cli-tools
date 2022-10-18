@@ -1,7 +1,7 @@
 {
     "name": "genxbe/k3x-cli-tools",
     "description": "A bunch of usefull tools to use with the Kirby CLI",
-	"version": "0.0.1",
+	"version": "0.0.2",
     "keywords": [
         "genxbe",
         "k3x-cli-tools",
