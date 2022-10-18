@@ -2,9 +2,11 @@
 
 namespace X\Commands\PluginCommands;
 
-use X\Cli;
+use X\Support\H;
+use X\Support\Plugins;
 use X\Commands\Command;
 
+use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
 
 use function Termwind\{render};
@@ -15,19 +17,14 @@ class ListCommand extends Command
 	public static string $commandDescription = 'List all installed plugins.';
 	public static array $commandArgs = [];
 
-	private object $cli;
-
-	public function __construct($cli)
+	public function __construct(CLI $cli)
 	{
-		$this->cli = $cli;
-
-		$kirby = kirby();
-		$sys = new \Kirby\Cms\System($kirby);
+		$plugins = Plugins::get();
 
 		$pluginsHtml = '';
 
-		foreach ($sys->plugins() as $plugin) {
-			$p = $kirby->plugin($plugin);
+		foreach ($plugins as $plugin) {
+			$p = kirby()->plugin($plugin);
 			$pluginsHtml .= '
 				<tr>
 				<td>'. $plugin .'</td>
