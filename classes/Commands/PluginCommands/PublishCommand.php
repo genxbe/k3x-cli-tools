@@ -11,7 +11,7 @@ use X\Support\H;
 use X\Support\Plugins;
 use X\Commands\Command;
 use X\Support\Menu\Menu;
-use X\Support\Autoloader;
+use Bnomei\Autoloader;
 
 use Kirby\CLI\CLI;
 use Kirby\Cms\Plugin;
