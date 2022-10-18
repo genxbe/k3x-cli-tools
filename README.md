@@ -1,6 +1,8 @@
 # Kirby CLI tools
 
-![License](https://img.shields.io/badge/License-MIT-green.svg) ![PHP Version](https://img.shields.io/packagist/dependency-v/genxbe/k3x-cli-tools/php) ![Kirby](https://img.shields.io/badge/Kirby-3.8+-9a3ecf8.svg) ![ALPHA](https://img.shields.io/packagist/v/genxbe/k3x-cli-tools)
+![License](https://img.shields.io/badge/License-MIT-green.svg) ![PHP Version](https://img.shields.io/packagist/dependency-v/genxbe/k3x-cli-tools/php) ![Kirby](https://img.shields.io/badge/Kirby-3.8+-9a3ecf8.svg)
+
+**ALPHA VERSION, not battle tested yet!**
 
 A bunch of usefull (and opiniated) tools to use with the Kirby CLI.
 
