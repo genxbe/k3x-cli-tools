@@ -24,7 +24,7 @@ class UpCommand extends Command
 		}
 		catch(\Exception $e)
 		{
-			X::debug($e->getMessage());
+			H::debug($e->getMessage());
 			die();
 		}
 	}
